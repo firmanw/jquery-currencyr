@@ -4,8 +4,8 @@ A simple yet advance currency converter UI plugin for jQuery. Instead of traditi
 
 
 ## Dependencies
-+ **[accounting.js](http://josscrowcroft.github.com/accounting.js)** (_included_): A library that provides reliable localisation and formatting of money and currency.
-+ **[jQuery Cookie](https://github.com/carhartl/jquery-cookie)** (_included_): A simple, lightweight jQuery plugin for reading, writing and deleting cookies.
++ **[accounting.js](http://josscrowcroft.github.com/accounting.js)** (*included*): A library that provides reliable localisation and formatting of money and currency.
++ **[jQuery Cookie](https://github.com/carhartl/jquery-cookie)** (*included*): A simple, lightweight jQuery plugin for reading, writing and deleting cookies.
 
 
 ## Installation
@@ -46,11 +46,13 @@ Then call the plugin right on selector.
 
 
 ## Options
-**numcodes** (default: 5): How many currency codes of dropdown
-
-**pad** (default: 20): Number of space of dialog with current target in pixels
-
-**root** (default: "currencyr"): An Id of root container without "#"
++ **root** (default: "currencyr"): An Id of root container without "#"
++ **numcodes** (default: 5): How many currency codes of dropdown
++ **pad** (default: 20): Number of space of dialog with current target in pixels
++ **currency** (default: null): Default currency
++ **thousand** (default: ","): Thousand separator
++ **decimal** (default: "."): Decimal point separator
++ **precision** (default: 2): Decimal places
 
 
 ## License
