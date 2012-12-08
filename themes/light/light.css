@@ -9,10 +9,6 @@
 
 .currencyr .currencyr-container {
   font-family: "Helvetica Neue", Helvetica;
-  font-size: 14px;
-  color: #333;
-  line-height: 1em;
-
   border: 1px solid #ccc;
   border-top-color: #e7e7e7;
   border-left-color: #e7e7e7;
@@ -29,6 +25,11 @@
 
   box-shadow: inset 1px 1px 0 rgba(255,255,255,.5), 1px 2px 2px rgba(0,0,0,.075);
   text-shadow: 1px 1px 0 rgba(255,255,255,.5);
+}
+.currencyr .currencyr-container,
+.currencyr .currencyr-container li {
+  font-size: 14px;
+  color: #333;
 }
 .currencyr .currencyr-converter {
   border-radius: 3px 3px 0 0;
@@ -56,7 +57,6 @@
 }
 .currencyr .currencyr-code {
   border-left: 1px solid #e7e7e7;
-
 }
 .currencyr .currencyr-toggle {
   background: url(sprite.png) -11px top no-repeat;
@@ -68,7 +68,6 @@
   background: #f4f4f4;
   border: 1px solid #e0e0e0;
   border-right-color: #ccc;
-
 }
 .currencyr .currencyr-codes li {
   padding: 5px 10px;
@@ -81,7 +80,6 @@
   background: #eee;
   padding: 4px 10px;
   border: 1px solid #ccc;
-  font-size: 11px;
   font-weight: normal;
   border-radius: 0 3px 3px 0;
   line-height: 14px;
@@ -113,3 +111,17 @@
   background: linear-gradient(to bottom,  rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0d000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
 }
+.currencyr .currencyr-remember {
+  border-top: 1px solid #ccc;
+  padding: 5px 10px;
+
+  background: -moz-linear-gradient(top,  rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.05)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0d000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+}
+
+
