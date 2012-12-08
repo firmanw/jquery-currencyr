@@ -58,7 +58,7 @@
             'root'      : 'currencyr',  // An Id of root container without "#"
             'numcodes'  : 5,            // How many codes of dropdown size
             'pad'       : 20,           // Number of space of dialog with current target in pixels
-            'default'   : null,         // Default currency,
+            'currency'  : null,         // Default currency,
             'thousand'  : ',',          // Thousands separator
             'decimal'   : '.',          // Decimal point separator
             'precision' : 2             // Decimal places
@@ -371,8 +371,8 @@
             if ( $.cookie('currencyr') != null ) {
                 base = $.cookie('currencyr');
                 $( 'input[type="checkbox"]', self.elements['remember'] ).attr( 'checked', true );
-            } else if ( self.options.default != null ) {
-                base = self.options.default;
+            } else if ( self.options.currency != null ) {
+                base = self.options.currency;
             }
 
             // Set the currency
