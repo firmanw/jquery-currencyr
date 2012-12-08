@@ -122,9 +122,13 @@ $.getJSON( 'http://openexchangerates.org/api/currencies.json', function( respons
         <h4>Options</h4>
         <pre>$('.amount').currencyr( { option_name: option_value } );</pre>
         <ul>
-          <li><b>numcodes</b> <i>(default: 5)</i>: How many currency codes of dropdown</li>
-          <li><b>pad</b> <i>(default: 20)</i>: Number of space of dialog with current target in pixels</li>
-          <li><b>root</b> <i>(default: "currencyr")</i>: An Id of root container without "#"</li>
+          <li><b>root</b> <i>(default: "currencyr")</i> &mdash; An Id of root container without "#"</li>
+          <li><b>numcodes</b> <i>(default: 5)</i> &mdash; How many currency codes of dropdown</li>
+          <li><b>pad</b> <i>(default: 20)</i> &mdash; Number of space of dialog with current target in pixels</li>
+          <li><b>currency</b> <i>(default: null)</i> &mdash; Default currency</li>
+          <li><b>thousand</b> <i>(default: ",")</i> &mdash; Thousand separator</li>
+          <li><b>decimal</b> <i>(default: ".")</i> &mdash; Decimal point separator</li>
+          <li><b>precision</b> <i>(default: 2)</i> &mdash; Decimal places</li>
         </ul>
 
         <h4>Feedback</h4>
