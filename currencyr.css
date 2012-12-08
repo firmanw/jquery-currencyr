@@ -13,7 +13,9 @@
   z-index: 2147483647;
 }
 /* Container */
-.currencyr .currencyr-container {
+.currencyr .currencyr-container,
+.currencyr .currencyr-container li {
+  line-height: 1;
   position: relative;
 }
 /* Beak arrow */
@@ -44,11 +46,6 @@
   margin-top: auto;
   margin-bottom: -8px;
 }
-/* Convert all */
-.currencyr .currencyr-convertall input {
-  margin: 0 .5em 0 0;
-}
-
 /* Converter container */
 .currencyr .currencyr-converter {
   position: relative;
@@ -56,14 +53,12 @@
 .currencyr .currencyr-converter-content {
   overflow: hidden;
 }
-
 /* Amount */
 .currencyr .currencyr-amount {
   text-align: right;
   height: 1em;
   margin-right: 5em;
 }
-
 /* Currency code block */
 .currencyr .currencyr-code {
   height: 100%;
@@ -135,7 +130,20 @@
   left: 100%;
   top: 0;
   white-space: nowrap;
+  font-size: 80%;
 }
 .currencyr .currencyr-dropdown li:hover span {
   visibility: visible;
+}
+/* Remember the choice */
+.currencyr .currencyr-remember input,
+.currencyr .currencyr-remember label {
+  vertical-align: top;
+}
+.currencyr .currencyr-remember input {
+  margin: 0;
+}
+.currencyr .currencyr-remember label {
+  font-size: 80%;
+  line-height: 1.3;
 }
