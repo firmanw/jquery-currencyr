@@ -55,9 +55,13 @@
 
         // Default options
         defaults: {
-            'numcodes' : 5,           // How many codes of dropdown size
-            'pad'      : 20,          // Number of space of dialog with current target in pixels
-            'root'     : 'currencyr'  // An Id of root container without "#"
+            'root'      : 'currencyr',  // An Id of root container without "#"
+            'numcodes'  : 5,            // How many codes of dropdown size
+            'pad'       : 20,           // Number of space of dialog with current target in pixels
+            'currency'  : null,         // Default currency,
+            'thousand'  : ',',          // Thousands separator
+            'decimal'   : '.',          // Decimal point separator
+            'precision' : 2             // Decimal places
         },
 
         // Currency data
@@ -105,6 +109,12 @@
         init: function()
         {
             if ( !this.prepare() ) return;
+
+            accounting.settings.currency = $.extend( accounting.settings.currency, {
+                'thousand'  : this.options.thousand,
+                'decimal'   : this.options.decimal,
+                'precision' : this.options.precision
+            } );
 
             this.build();
             this.setDimensions();
@@ -347,7 +357,7 @@
                 height = $( target ).height(),
                 vp     = self.viewport(),
                 beak   = self.elements['beak'].height() + 2,
-                yp     = offset.top + height + beak,
+                yp     = ( offset.top - $( window ).scrollTop() ) + height + beak,
                 ypad   = yp + self.options.pad;
 
             self.current = $(target);
@@ -361,6 +371,8 @@
             if ( $.cookie('currencyr') != null ) {
                 base = $.cookie('currencyr');
                 $( 'input[type="checkbox"]', self.elements['remember'] ).attr( 'checked', true );
+            } else if ( self.options.currency != null ) {
+                base = self.options.currency;
             }
 
             // Set the currency
@@ -399,7 +411,9 @@
                 .hide()
                 .css({
                     opacity: 0,
-                    left: ( offset.left - $(window).scrollLeft() ) - Math.min( self.elements['beak'].width(), $( target ).outerWidth() / 2), top: ypad } )
+                    left: ( offset.left - $(window).scrollLeft() ) - Math.min( self.elements['beak'].width(), $( target ).outerWidth() / 2),
+                    top: ypad
+                })
                 .show()
                 .animate( { top: yp, opacity: 1 } );
         },
@@ -571,12 +585,12 @@
         /**
          * Remember the selection
          */
-         remember: function( checked, code )
-         {
+        remember: function( checked, code )
+        {
 
             if ( checked ) $.cookie( 'currencyr', code );
             else $.removeCookie( 'currencyr' );
-         },
+        },
 
         /**
          * Get the viewport dimension
