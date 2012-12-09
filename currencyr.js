@@ -357,7 +357,7 @@
                 height = $( target ).height(),
                 vp     = self.viewport(),
                 beak   = self.elements['beak'].height() + 2,
-                yp     = offset.top + height + beak,
+                yp     = ( offset.top - $( window ).scrollTop() ) + height + beak,
                 ypad   = yp + self.options.pad;
 
             self.current = $(target);
