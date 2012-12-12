@@ -4,8 +4,8 @@ A simple yet advance currency converter UI plugin for jQuery. Instead of traditi
 
 
 ## Dependencies
-+ **[accounting.js](http://josscrowcroft.github.com/accounting.js)** (*included*): A library that provides reliable localisation and formatting of money and currency.
-+ **[jQuery Cookie](https://github.com/carhartl/jquery-cookie)** (*included*): A simple, lightweight jQuery plugin for reading, writing and deleting cookies.
++ **[accounting.js](http://josscrowcroft.github.com/accounting.js)** (included): A library that provides reliable localisation and formatting of money and currency.
++ **[jQuery Cookie](https://github.com/carhartl/jquery-cookie)** (included): A simple, lightweight jQuery plugin for reading, writing and deleting cookies.
 
 
 ## Installation
@@ -46,6 +46,7 @@ Then call the plugin right on selector.
 
 
 ## Options
+
 + **root** (default: "currencyr"): An Id of root container without "#"
 + **numcodes** (default: 5): How many currency codes of dropdown
 + **pad** (default: 20): Number of space of dialog with current target in pixels
@@ -55,7 +56,14 @@ Then call the plugin right on selector.
 + **precision** (default: 2): Decimal places
 
 
-## License
-Copyright 2012, Firman Wandayandi
+## Changelog
 
+**1.0.1**
+
++ Fixed dropdown on Firefox. "DOMMouseScroll" reported invalid event, replaced by "MozMousePixelScroll" and "wheel".
+
+
+## License
+
+Copyright 2012, Firman Wandayandi  
 Dual licensed under the [MIT License](http://www.opensource.org/licenses/MIT) or [GPL Version 2](http://opensource.org/licenses/GPL-2.0) licenses.
