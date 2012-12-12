@@ -336,7 +336,13 @@
 
             // Bind the handler to mouse wheel event
             if ( window.addEventListener ) {
-                self.elements['dropdown'][0].addEventListener( 'DOMMouseScroll', self.dropdownWheel, false );
+                // Firefox 17.0 (Gecko 17.0)
+                self.elements['dropdown'][0].addEventListener( 'wheel', self.dropdownWheel, false );
+
+                // Firefox 3.5 (Gecko 1.9.1) [Deprecated]
+                self.elements['dropdown'][0].addEventListener( 'MozMousePixelScroll', self.dropdownWheel, false );
+
+                // IE & WebKit
                 self.elements['dropdown'][0].addEventListener( 'mousewheel', self.dropdownWheel, false );
             }
 
@@ -481,8 +487,8 @@
         dropdownWheel: function( e )
         {
             // this = jQuery object of codes selector
-            var event   = e || window.event,
-                delta   = event.wheelDelta ? event.wheelDelta / 120 : -event.detail,
+            var e   = e || window.event,
+                delta   = e.wheelDelta ? e.wheelDelta / 120 : -e.deltaY || -e.detail,
                 scroll  = $( this ).data( 'scroll' ) || 0,
                 liH     = $( 'ul', this ).height(),
                 vwH     = $( this ).height();
@@ -497,8 +503,9 @@
             // Set the top position of codes list
             $('ul', this).css( 'top', -scroll );
 
-            event = $.event.fix( event );
-            event.preventDefault();
+            // Lock the window scroll
+            e = $.event.fix( e );
+            e.preventDefault();
         },
 
         /**
