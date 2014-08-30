@@ -1,0 +1,264 @@
+/*======= Core stylesheet for jQuery Currencyr ======= */
+
+.currencyr {
+
+	position: absolute;
+	top: 45%;
+	left: 45%;
+
+	*,
+	*:before,
+	*:after {
+		box-sizing: content-box;
+		-moz-box-sizing: content-box;
+		-o-box-sizing: content-box;
+	}
+
+
+	.currencyr-container {
+		line-height: 1;
+		position: relative;
+		z-index: 9999;
+		box-shadow: 0 1px 4px rgba(0,0,0,.15);
+
+		// Top triangle //
+		&:before {
+			content: "";
+			width: 0px;
+			height: 0px;
+			line-height: 0px;
+
+			position: absolute;
+			left: 20px;
+			top: -8px;
+			margin-left: -8px;
+		}
+		&:after {
+			content: "";
+			width: 0px;
+			height: 0px;
+			border-style: solid;
+			border-width: 0 7px 7px 7px;
+			line-height: 0px;
+
+			position: absolute;
+			left: 20px;
+			top: -7px;
+			margin-left: -7px;
+		}
+	}
+
+	// Hint block //
+	.currencyr-hint {
+		position: absolute;
+		display: none;
+		z-index: 1;
+	}
+	.currencyr-hint-wrapper {
+		position: relative;
+		overflow: hidden;
+		box-shadow: 0 1px 4px rgba(0,0,0,.1);
+	}
+	.currencyr-hint-symbol,
+	.currencyr-hint-name {
+		padding: 7px 10px;
+		display: inline-block;
+	}
+	.currencyr-hint-symbol {
+		position: absolute;
+	}
+	.currencyr-hint-name {
+		position: absolute;
+		top: 0;
+		white-space: nowrap;
+		float: right;
+	}
+
+	// Close button //
+	.currencyr-close {
+		position: absolute;
+		top: -8px;
+		right: -8px;
+		cursor: pointer;
+		z-index: 3;
+		border-radius: 50%;
+		box-shadow: 1px 1px 2px rgba(0,0,0,.1);
+
+		div {
+			width: 16px;
+			height: 16px;
+			position: relative;
+
+			&:before,
+			&:after {
+				content: "";
+				height: 2px;
+				width: 50%;
+				display: block;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-left: -4px;
+				margin-top: -1px;
+			}
+			&:before {
+				transform: rotate(45deg);
+				-ms-transform: rotate(45deg);
+				-webkit-transform: rotate(45deg);
+			}
+			&:after {
+				transform: rotate(-45deg);
+				-ms-transform: rotate(-45deg);
+				-webkit-transform: rotate(-45deg);
+			}
+		}
+	}
+
+	// Amount & Currency //
+	.currencyr-amount,
+	.currencyr-currency {
+		padding: 7px 10px;
+		position: relative;
+		overflow: hidden;
+
+		span {
+			position: relative;
+			display: block;
+		}
+	}
+	.currencyr-currency {
+		position: absolute;
+		right: 0;
+		top: 0;
+		padding-right: 25px;
+		cursor: pointer;
+		z-index: 3;
+
+		// Triangle down //
+		&:before {
+			content: "";
+			width: 0px;
+			height: 0px;
+			border-style: solid;
+			border-width: 4px 4px 0 4px;
+			border-color: transparent;
+			line-height: 0px;
+
+			position: absolute;
+			right: 10px;
+			top: 50%;
+			margin-top: -2px;
+		}
+	}
+
+
+	// Dropdown //
+	.currencyr-dropdown {
+		position: absolute;
+		right: -1px;
+		overflow: hidden;
+		z-index: 2;
+		box-shadow: 0 1px 4px rgba(0,0,0,.15);
+		opacity: 0;
+
+		&:hover {
+			.currencyr-dropdown-bar-track {
+				opacity: 1;
+			}
+		}
+	}
+	.currencyr-dropdown-container {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+	.currencyr-dropdown-pane {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		position: absolute;
+		width: 100%;
+
+		div {
+			padding: 7px 10px;
+			text-align: left;
+			cursor: pointer;
+		}
+	}
+	.currencyr-dropdown-bar {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		width: 10px;
+		height: 100%;
+		z-index: 1;
+	}
+	.currencyr-dropdown-bar-track {
+		position: relative;
+		height: 100%;
+		opacity: 0;
+	}
+	.currencyr-dropdown-bar-control {
+		height: 45px;
+		width: 6px;
+		margin: 2px;
+		border-radius: 3px;
+		cursor: pointer;
+		position: absolute;
+	}
+
+
+	// Bottom //
+	.currencyr-bottom {
+		padding: 5px 10px;
+		vertical-align: middle;
+
+		label {
+			display: inline;
+			cursor: pointer;
+			margin: 0;
+		}
+
+		input[type=checkbox] {
+			margin: 2px 4px 0 0;
+			box-sizing: border-box;
+			-moz-box-sizing: border-box;
+		}
+	}
+
+	// DIRECTION STYLES //
+	&.currencyr-direction-top {
+		.currencyr-container {
+			&:before {
+				top: auto;
+				bottom: -8px;
+				border-top-width: 8px;
+				border-bottom-width: 0;
+			}
+			&:after {
+				top: auto;
+				bottom: -7px;
+				border-top-width: 7px;
+				border-bottom-width: 0;
+			}
+		}
+		.currencyr-close {
+			top: auto;
+			bottom: -8px;
+		}
+		.currencyr-dropdown {
+			border-top-width: 1px;
+			box-shadow: 0 -1px 4px rgba(0,0,0,.1);
+		}
+		.currencyr-dropdown-container {
+			&:before {
+				top: auto;
+				bottom: -4px;
+			}
+		}
+	}
+}
+
+@import 'themes/default';

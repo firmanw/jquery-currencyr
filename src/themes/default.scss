@@ -1,0 +1,185 @@
+/*======= Default theme stylesheet for jQuery Currencyr =======*/
+
+$font-stack: "Helvetica Neue", Helvetica, Arial;
+$background-color: #fff;
+$background-color-hover: #fafafa;
+$border-width: 1px;
+$border-color: #ccc;
+$border-color-alt: #e3e3e3;
+
+.currencyr {
+
+	* {
+		font-family: $font-stack;
+		font-size: 14px;
+		color: #000;
+		line-height: 1.42857;
+	}
+
+
+	// COLLECTIVE STYLES //
+
+	.currencyr-container,
+	.currencyr-close,
+	.currencyr-currency,
+	.currencyr-hint-wrapper,
+	.currencyr-dropdown {
+		background-color: $background-color;
+	}
+
+	@mixin border-style() {
+		border-color: $border-color;
+		border-style: solid;
+		border-width: 0;
+	}
+	@mixin border-style-alt() {
+		border-color: $border-color-alt;
+		border-style: solid;
+		border-width: 0;
+	}
+
+	.currencyr-container,
+	.currencyr-container:before,
+	.currencyr-close,
+	.currencyr-dropdown,
+	.currencyr-hint-wrapper {
+		@include border-style();
+	}
+
+	&.currencyr-state-opened {
+		.currencyr-amount,
+		.currencyr-currency {
+			@include border-style();
+		}
+	}
+	.currencyr-amount,
+	.currencyr-bottom,
+	.currencyr-dropdown-pane div {
+		@include border-style-alt();
+	}
+
+	.currencyr-hint-wrapper {
+		background-color: $background-color-hover;
+	}
+
+	.currencyr-dropdown-pane {
+		div:hover,
+		div:focus,
+		div:active {
+			background-color: $background-color-hover;
+		}
+	}
+
+	//=== COMPONENTS ===//
+
+	// Container //
+	.currencyr-container {
+		border-width: 1px;
+		border-radius: 2px;
+
+		&:before {
+			border-left-color: transparent;
+			border-right-color: transparent;
+			border-width: 0 8px 8px 8px;
+		}
+
+		&:after {
+			/* Must equal color to .currencyr-container "background-color" */
+			border-color: transparent transparent $background-color transparent;
+		}
+	}
+
+	// Close toggle //
+	.currencyr-close {
+		border-width: $border-width;
+
+		&:hover,
+		&:focus,
+		&:active {
+			color: #000;
+		}
+
+		div:before,
+		div:after {
+	    	background-color: #000000;
+		}
+	}
+
+	// Hint //
+	.currencyr-hint-wrapper {
+		border-width: $border-width;
+		border-radius: 2px;
+	}
+
+	// Amount & Currency //
+	.currencyr-amount {
+		border-right-width: $border-width;
+		border-top-left-radius: 2px;
+	}
+	.currencyr-currency {
+		border-top-right-radius: 2px;
+	}
+	// Caret //
+	.currencyr-currency:before {
+		border-top-color: #000;
+	}
+
+	// Dropdown //
+	.currencyr-dropdown {
+		border-width: $border-width;
+		border-radius: 0 0 2px 2px;
+	}
+	.currencyr-dropdown-pane {
+		div {
+			border-top-width: 1px;
+		}
+	}
+	.currencyr-dropdown-bar-control {
+		background-color: rgba(0,0,0,.5);
+	}
+
+
+	// Bottom //
+	.currencyr-bottom {
+		border-top-width: 1px;
+	}
+
+	//=== STATE  ===//
+
+	&.currencyr-state-opened {
+		.currencyr-amount {
+			border-right-width: $border-width;
+		}
+		.currencyr-currency:before {
+			border-bottom-color: #000;
+			border-bottom-width: 4px;
+			border-top-width: 0;
+		}
+		.currencyr-currency {
+			border-bottom-width: $border-width;
+		}
+	}
+
+	//=== DIRECTION STYLES ===//
+
+	&.currencyr-direction-top {
+		.currencyr-container:after {
+			border-top-color: #fff;
+		}
+		.currencyr-dropdown-pane div {
+			border-top-width: 0;
+			border-bottom-width: $border-width;
+		}
+		.currencyr-currency {
+			/* Must equal to border color of container */
+			box-shadow: 0 -1px 0 $border-color;
+		}
+		&.currencyr-state-opened .currencyr-currency {
+			border-top-right-radius: 0;
+		}
+		.currencyr-dropdown {
+			border-radius: 2px 2px 0 0;
+		}
+	}
+
+}

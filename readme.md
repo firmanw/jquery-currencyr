@@ -1,69 +1,73 @@
-# Currencyr
+# jQuery Currencyr
 
-A simple yet advance currency converter UI plugin for jQuery. Instead of traditional "calculator" looks converter, Currencyr came with "tooltip" looks idea right near the amount selector.
-
-
-## Dependencies
-+ **[accounting.js](http://josscrowcroft.github.com/accounting.js)** (included): A library that provides reliable localisation and formatting of money and currency.
-+ **[jQuery Cookie](https://github.com/carhartl/jquery-cookie)** (included): A simple, lightweight jQuery plugin for reading, writing and deleting cookies.
+A tooltip UI style realtime currency converter plugin for jQuery.
 
 
 ## Installation
 
-Include these lines after jQuery library.
+Include these lines after jQuery.
 
-    <style rel="stylesheet" type="text/css" href="/path/to/currencyr.css" >
-	<style rel="stylesheet" type="text/css" href="/path/to/themes/@theme@/@theme@.css" >
-	<script src="/path/to/currencyr.js"></script>
+	<style rel="stylesheet" type="text/css" href="jquery.currencyr.css" >
+	<script src="jquery.currencyr.js"></script>
 
 
 ## Usage
 
-First you MUST assign the currencies, base and rates.
+First you MUST assign Hash rates.
 
-	var currencies = {
-			"AED": "United Arab Emirates Dirham",
-			"AFN": "Afghan Afghani",
-			"ALL": "Albanian Lek",
-			"AMD": "Armenian Dram",
-			...
-		},
-		base = 'USD',
-		rates = {
-			"AED": 3.673177,
-			"AFN": 51.719367,
-			"ALL": 107.942001,
-			"AMD": 405.503334,
-			...
-		};
+	var rates = {
+		"AED": 3.673177,
+		"AFN": 51.719367,
+		"ALL": 107.942001,
+		"AMD": 405.503334,
+		…
+	};
 
-	$.currencyr( currencies, base, rates );
+Initialize the plugin.
 
+	$.currencyr(rates, options);
 
 Then call the plugin right on selector.
 
 	$('.amount').currencyr();
+	
+You can also pass the options to change the default behaviour.
 
+	$('.another-amount').currencyr(options);
 
 ## Options
 
-+ **root** (default: "currencyr"): An Id of root container without "#"
-+ **numcodes** (default: 5): How many currency codes of dropdown
-+ **pad** (default: 20): Number of space of dialog with current target in pixels
-+ **currency** (default: null): Default currency
-+ **thousand** (default: ","): Thousand separator
-+ **decimal** (default: "."): Decimal point separator
-+ **precision** (default: 2): Decimal places
++ **base**: _string_ - Base rate currency
++ **default**: _string_ - Default currency (default: **base**)
++ **visible**: _number_ - Visible dropdown items (default: 5)
++ **thousand**: _string_ - Thousand separator (default: ",")
++ **decimal**: _string_ - Decimal point separator (default: ".")
++ **precision**: _number_ - Decimal places (default: 2)
++ **remember**: _boolean_ - Whether enable or disable remember feature (default: true)
++ **rememberText**: _string_ - Text for remember checkbox (default: Remember)
 
+## Localisation
+
+To enable translation, simply override the `jQuery.currencyr.currency` object. See `dist/locale` for example.
 
 ## Changelog
+
+**1.1.0-rc1**
+
++ Rewritten the plugin from scratch with tons improvements.
++ Add Bower support
 
 **1.0.1**
 
 + Fixed dropdown on Firefox. "DOMMouseScroll" reported invalid event, replaced by "MozMousePixelScroll" and "wheel".
 
+**1.0.0**
+
++ Initial release
+
 
 ## License
 
-Copyright 2012, Firman Wandayandi  
-Dual licensed under the [MIT License](http://www.opensource.org/licenses/MIT) or [GPL Version 2](http://opensource.org/licenses/GPL-2.0) licenses.
+Licensed under the [MIT License](http://www.opensource.org/licenses/MIT)
+
+Copyright © 2014 Firman Wandayandi

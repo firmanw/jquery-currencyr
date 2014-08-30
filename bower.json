@@ -1,0 +1,32 @@
+{
+	"name": "jquery.currencyr",
+	"version": "1.1.0-rc1",
+	"dependencies": {
+    	"jquery": ">=1.7.0-b1"
+  	},
+  	"main": "src/jquery.currencyr.js",
+	"authors": [
+		{ "name": "Firman Wandayandi", "email": "<me@firmanw.com>", "homepage": "http://firmanw.com"}
+	],
+	"description": "A tooltip UI style realtime currency converter plugin for jQuery.",
+	"keywords": [
+		"ui",
+		"converter",
+		"currency",
+		"money",
+		"finance"
+	],
+	"license": "MIT",
+	"homepage": "http://labs.firmanw.com/jquery.currencyr",
+	"ignore": [
+		"**/.*",
+		"node_modules",
+		"bower_components",
+		"Gruntfile.js",
+    	"package.json",
+    	"tests",
+    	"helpers",
+    	".sass-cache",
+    	"demo"
+	]
+}
