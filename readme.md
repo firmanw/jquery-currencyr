@@ -10,6 +10,7 @@ Include these lines after jQuery.
 	<style rel="stylesheet" type="text/css" href="jquery.currencyr.css" >
 	<script src="jquery.currencyr.js"></script>
 
+Please note: This plugin is requires jQuery v1.9.0-rc1 or later.
 
 ## Usage
 
