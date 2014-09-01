@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*======= Core stylesheet for jQuery Currencyr ======= */
 .currencyr { position: absolute; top: 45%; left: 45%; }
 .currencyr *, .currencyr *:before, .currencyr *:after { box-sizing: content-box; -moz-box-sizing: content-box; -o-box-sizing: content-box; }
@@ -34,6 +35,8 @@
 .currencyr.currencyr-direction-top .currencyr-close { top: auto; bottom: -8px; }
 .currencyr.currencyr-direction-top .currencyr-dropdown { border-top-width: 1px; box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.1); }
 .currencyr.currencyr-direction-top .currencyr-dropdown-container:before { top: auto; bottom: -4px; }
+
+.currencyr-indicator:after { content: "⥂"; color: red; line-height: 1; font-size: 10px; vertical-align: baseline; position: relative; top: -.75em; margin-left: .5em; }
 
 /*======= Default theme stylesheet for jQuery Currencyr =======*/
 .currencyr * { font-family: "Helvetica Neue", Helvetica, Arial; font-size: 14px; color: #000; line-height: 1.42857; }

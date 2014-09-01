@@ -261,4 +261,15 @@
 	}
 }
 
+.currencyr-indicator:after {
+	content: "⥂";
+	color: red;
+	line-height: 1;
+	font-size: 10px;
+	vertical-align: baseline;
+	position: relative;
+	top: -.75em;
+	margin-left: .5em;
+}
+
 @import 'themes/default';
