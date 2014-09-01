@@ -7,7 +7,7 @@ A tooltip UI style realtime currency converter plugin for jQuery.
 
 Include these lines after jQuery.
 
-	<style rel="stylesheet" type="text/css" href="jquery.currencyr.css" >
+	<style href="jquery.currencyr.css" />
 	<script src="jquery.currencyr.js"></script>
 
 Please note: This plugin is requires jQuery v1.9.0-rc1 or later.
@@ -38,14 +38,15 @@ You can also pass the options to change the default behaviour.
 
 ## Options
 
-+ **base**: _string_ - Base rate currency
 + **default**: _string_ - Default currency (default: **base**)
 + **visible**: _number_ - Visible dropdown items (default: 5)
 + **thousand**: _string_ - Thousand separator (default: ",")
 + **decimal**: _string_ - Decimal point separator (default: ".")
 + **precision**: _number_ - Decimal places (default: 2)
++ **fraction**: _boolean_ - _true_ to always show fraction, _false_ to show if any (default: false)
 + **remember**: _boolean_ - Whether enable or disable remember feature (default: true)
 + **rememberText**: _string_ - Text for remember checkbox (default: Remember)
++ **indicator**: _string_ - CSS class for indicator
 
 ## Localisation
 
