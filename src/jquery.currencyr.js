@@ -1,5 +1,5 @@
 /*!
- * jQuery Currencyr v1.1.0-rc1
+ * jQuery Currencyr v1.1.0-rc2
  * http://firmanw.com/jquery.currencyr
  * Copyright (c) 2014 Firman Wandayandi; Licensed MIT
  */
@@ -20,14 +20,15 @@
 
 		$.extend($.currencyr, {
 			'options': $.extend({}, {
-				'base'			: null,			// Base rate currency
-				'default'  		: null,         // Default currency
-				'visible'  		: 5,            // Visible dropdown items
-				'thousand'  	: ',',          // Thousands separator
-				'decimal'   	: '.',          // Decimal point separator
-				'precision'		: 2,            // Decimal places
-				'remember'		: false,
-				'rememberText'	: 'Remember'
+				'default'  		: null,         		// Default currency
+				'visible'  		: 5,            		// Visible dropdown items
+				'thousand'  	: ',',          		// Thousands separator
+				'decimal'   	: '.',          		// Decimal point separator
+				'precision'		: 4,            		// Decimal places
+				'fraction'		: false,				// 'true' always show fraction, 'false' show if any
+				'remember'		: false,				// Show remember option checkbox
+				'rememberText'	: 'Remember',			// Remember checkbox text
+				'indicator'		: 'currencyr-indicator'	// CSS class for indicator
 			}, options),
 			'rates': rates || {}
 		});
@@ -267,10 +268,32 @@
 		addSubject: function( subject, options )
 		{
 
+			var self = this;
+
 			if ( !this.isSubjectExists(subject) ) {
 				$(subject).data('currencyr_options', $.extend({}, $.currencyr.options, options));
 				this.subjects.push(subject);
-				this.bind(subject);
+
+				// Bind the event
+				$(subject).on( 'click', function( event ) {
+					var value = self.parseValue( $(this).text() );
+
+					self.subject = $(this);
+					self.options = self.subject.data('currencyr_options');
+
+					self.subject.data('currencyr-amount', value.amount);
+					self.subject.data('currencyr-currency', value.currency);
+
+					self.open(self.subject);
+				});
+
+				// Keep the event enable on the target
+				this.ui.add(subject).on( 'click', function(e) {
+					 e.stopPropagation();
+				});
+
+				// Add indicator
+				$(subject).addClass(this.options.indicator);
 			}
 
 		},
@@ -288,47 +311,6 @@
 
 		},
 
-		bind: function(subject)
-		{
-
-			var self = this;
-
-			$(subject).on( 'click', function( event ) {
-				var value = self.parseValue( $(this).text() );
-
-				self.subject = $(this);
-				self.options = $(this).data('currencyr_options');
-
-				$(this).data('currencyr-amount', value.amount);
-				$(this).data('currencyr-currency', value.currency);
-
-				self.open( event );
-			});
-
-			// Keep the event enable on the target
-			this.ui.add(subject).on( 'click', function(e) {
-				 e.stopPropagation();
-			});
-
-		},
-
-		setBase: function()
-		{
-
-			var self = this;
-
-			if ( !this.options.base ) {
-				$.each( $.currencyr.rates, function( currency, rate ) {
-					if ( rate == 1 ) self.options.base = currency;
-				});
-			} else {
-				$.currencyr.rates[ this.options.base ] = 1;
-			}
-
-			return this.options.base ? true : false;
-
-		},
-
 		setSymbols: function()
 		{
 
@@ -340,11 +322,10 @@
 
 		},
 
-		open: function( event )
+		open: function( $target )
 		{
 
-			var $target = $(event.target),
-				containerH = 0;
+			var containerH = 0;
 
 			this.uiInit( $target );
 
@@ -377,7 +358,7 @@
 		{
 
 			// Set the current currency
-			if ( ( this.options.default && !( this.options.default in $.currencyr.rates ) ) || !this.options.default ) this.currency = this.options.base;
+			if ( ( this.options.default && !( this.options.default in $.currencyr.rates ) ) || !this.options.default ) this.currency = $target.data('currencyr-currency');
 			else this.currency = this.options.default;
 
 			value = this.remember();
@@ -437,6 +418,7 @@
 
 		uiCreateCloseButton: function()
 		{
+
 			var self = this;
 
 			this.uiCloseButton = $('<div>')
@@ -447,6 +429,7 @@
 			this.uiCloseButton.on('click', function( event ) {
 				self.close();
 			});
+
 		},
 
 		uiCreateAmount: function()
@@ -872,7 +855,7 @@
 				currency = value.replace(/[\d\.\s,-]/g, '' );
 
 			$.each( $.currencyr.currency, function( code, info ) {
-				var regex = new RegExp( '^(' + self.regexQuote(code) + '|' + self.regexQuote(info.symbol) + ')$', 'g' );
+				var regex = new RegExp( '^(' + self.regexQuote(code) + '|' + self.regexQuote(info.symbol) + ')', 'g' );
 				if ( regex.test(currency) ) {
 					currency = code;
 					return;
@@ -893,7 +876,7 @@
 		 */
 		convert: function( amount, from, to )
 		{
-			return amount * ( ( 1 / $.currencyr.rates[from] ) * $.currencyr.rates[to] );
+			return Number( ( amount * ( ( 1 / $.currencyr.rates[from] ) * $.currencyr.rates[to] ) ).toFixed(this.options.precision) );
 		},
 
 		/**
@@ -904,13 +887,16 @@
 		 * @return string
 		 */
 		formatNumber: function( value ) {
-			base = parseInt( Math.abs( value || 0 ), 10 ) + '';
-			rem = base.length > 3 ? base.length % 3 : 0;
+			var base = parseInt( Math.abs( value || 0 ), 10 ) + '',
+				rem = base.length > 3 ? base.length % 3 : 0,
+				fraction = value.toFixed( this.options.precision ).split('.')[1];
+
+			if ( this.options.fraction === false && Number(fraction) <= 0 ) fraction = '';
 
 			return ( value < 0 ? '-' : '' ) +
 				( rem > 0 ? base.substr( 0, rem ) + this.options.thousand : '' ) +
 				base.substr( rem ).replace( /(\d{3})(?=\d)/g, '$1' + this.options.thousand ) +
-				( this.options.precision ? this.options.decimal + value.toFixed( this.options.precision ).split('.')[1] : '' );
+				( Number(fraction) > 0 || this.options.fraction && this.options.precision ? this.options.decimal + fraction : '' );
 		}
 
 	};
