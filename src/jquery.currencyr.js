@@ -556,6 +556,7 @@
 
 			this.uiDropdown.height( height );
 			this.uiDropdownContainer.height( height );
+			this.uiDropdownBarControl.css({top: 0});
 
 			if ( this.direction == 'top' ) this.uiDropdown.css( { top: this.uiDropdown.outerHeight()* -1 } );
 			else this.uiDropdown.css( { top: this.uiTop.outerHeight() } );
@@ -629,7 +630,7 @@
 				itemH = this.uiDropdownPane.find('div').outerHeight(),
 				paneMaxT = ( this.uiDropdownPane.outerHeight() - ( itemH * this.options.visible ) ) * -1,
 				barDstT = 0,
-				barMaxT = this.uiDropdownBarTrack.outerHeight() - this.uiDropdownBarControl.outerHeight(true	);
+				barMaxT = this.uiDropdownBarTrack.outerHeight() - this.uiDropdownBarControl.outerHeight(true);
 
 			this.uiHideHint();
 
